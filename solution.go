@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
 func sumXY(x, y int) int {
 	return x + y
@@ -24,7 +28,7 @@ func primes(n int) []int {
 		}
 		if isPrime && k < n {
 			retval[k] = x
-			k += 1
+			k++
 			continue
 		}
 		if k >= n {
@@ -37,9 +41,16 @@ func primes(n int) []int {
 
 func primeSequence(n int) {
 	p := primes(n)
+	pText := []string{}
 	for i := 0; i < n; i++ {
-		fmt.Printf("%d ", p[i])
+		//fmt.Printf("%d ", p[i])
+		number := p[i]
+		text := strconv.Itoa(number)
+		pText = append(pText, text)
 	}
+
+	result := strings.Join(pText, ", ")
+	fmt.Println(result)
 }
 
 func fibonacciClosure() func() int {
@@ -53,19 +64,12 @@ func fibonacciClosure() func() int {
 
 func fibonacciSequence(n int) {
 	f := fibonacciClosure()
+	fText := []string{}
 	for i := 0; i < n; i++ {
-		fmt.Printf("%v ", f())
+		//fmt.Printf("%v ", f())
+		text := strconv.Itoa(f())
+		fText = append(fText, text)
 	}
-}
-
-func main() {
-	x := 1
-	y := 2
-
-	fmt.Printf("sum %d + %d  = %v\n", x, y, sumXY(x, y))
-	fmt.Printf("multiply %d * %d = %v\n", x, y, multiplyXY(x, y))
-	primeSequence(4)
-	fmt.Println()
-	fibonacciSequence(4)
-
+	result := strings.Join(fText, ", ")
+	fmt.Println(result)
 }
